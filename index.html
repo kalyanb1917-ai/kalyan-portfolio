@@ -846,62 +846,23 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
   </div>
 </footer>
 
-<script>
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>40));
-function toggleMob(){document.getElementById('mob').classList.toggle('open')}
-
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
-
-document.querySelectorAll('.proj-card,.skill-card,.cert-card,.acard,.dp').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-    card.style.transform=`perspective(700px)rotateY(${x*8}deg)rotateX(${-y*6}deg)translateY(-6px)`;
-  });
-  card.addEventListener('mouseleave',()=>card.style.transform='');
-});
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<script>
-emailjs.init({
-  publicKey: "7WldpWTPKnpoxGDAo"
-});
-
-document.getElementById("contact-form").addEventListener("submit", function(e) {
+function sendGmail(e){
   e.preventDefault();
+  const first=document.getElementById('cf-first').value.trim();
+  const last=document.getElementById('cf-last').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  const sub=document.getElementById('cf-subject').value.trim()||'Data Analyst Opportunity';
+  const msg=document.getElementById('cf-msg').value.trim();
+  const name=(first+' '+last).trim()||'Someone';
+  const body=`Hi Kalyan,
 
-  const status = document.getElementById("cf-status");
-  const btn = document.getElementById("cf-send-btn");
+${msg}
 
-  const firstName = document.getElementById("cf-first").value.trim();
-  const lastName = document.getElementById("cf-last").value.trim();
-
-  const templateParams = {
-    from_name: `${firstName} ${lastName}`.trim(),
-    reply_to: document.getElementById("cf-email").value.trim(),
-    subject: document.getElementById("cf-subject").value.trim(),
-    message: document.getElementById("cf-msg").value.trim()
-  };
-
-  btn.disabled = true;
-  btn.textContent = "Sending...";
-  status.innerHTML = "";
-
-  emailjs.send("service_an7g85d", "template_37vdpb3", templateParams)
-    .then(function() {
-      status.innerHTML = "Message sent successfully";
-      document.getElementById("contact-form").reset();
-    })
-    .catch(function(error) {
-      console.error("EmailJS Error:", error);
-      status.innerHTML = "Failed to send message. Please try again.";
-    })
-    .finally(function() {
-      btn.disabled = false;
-      btn.textContent = "Send Message";
-    });
-});
-</script>
+Best regards,
+${name}${email?' ('+email+')':''}`;
+  const url=https://mail.google.com/mail/?view=cm&fs=1&to=kalyanb1917@gmail.com&su=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)};
+  window.open(url,'_blank');
+} **
 </script>
 </body>
 </html>
