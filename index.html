@@ -107,45 +107,11 @@ h1.hero-name .last{color:var(--blue-lt)}
 .btn-ghost:hover{border-color:var(--text2);color:var(--text);transform:translateY(-1px)}
 
 /* PHOTO — right column, same height as name */
-.hero-photo-col{
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  padding-top:9px;
-}
-
-.photo-frame{
-  position:relative;
-  width:280px;
-}
-
-.photo-ring-outer{
-  position:absolute;
-  inset:-10px;
-  border-radius:50%;
-  border:1px solid rgba(59,130,246,.18);
-  pointer-events:none;
-}
-
-.photo-ring-inner{
-  position:absolute;
-  inset:-20px;
-  border-radius:50%;
-  border:1px solid rgba(59,130,246,.08);
-  pointer-events:none;
-}
-
-.photo-img{
-  width:100%;
-  aspect-ratio:1;
-  border-radius:50%;
-  object-fit:cover;
-  object-position:top center;
-  border:3px solid rgba(255,255,255,.08);
-  box-shadow:0 16px 60px rgba(0,0,0,.6),0 0 0 1px rgba(37,99,235,.15);
-  position:relative;
-  z-index:2;
-}
+.hero-photo-col{display:flex;align-items:flex-start;justify-content:center;padding-top:4px}
+.photo-frame{position:relative;width:320px}
+.photo-ring-outer{position:absolute;inset:-10px;border-radius:50%;border:1px solid rgba(59,130,246,.18);pointer-events:none}
+.photo-ring-inner{position:absolute;inset:-20px;border-radius:50%;border:1px solid rgba(59,130,246,.08);pointer-events:none}
+.photo-img{width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;object-position:top center;border:3px solid rgba(255,255,255,.08);box-shadow:0 16px 60px rgba(0,0,0,.6),0 0 0 1px rgba(37,99,235,.15);position:relative;z-index:2}
 
 /* AVAILABILITY BANNER */
 .avail-strip{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 22px;margin-top:32px;display:flex;align-items:flex-start;gap:12px}
@@ -344,9 +310,9 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#Experience">Experience</a></li>
-      <li><a href="#projects">projects</a></li>
-      <li><a href="#certifications">certifications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certifications">Certs</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -357,9 +323,9 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
 <div class="mob-menu" id="mob">
   <a href="#about" onclick="toggleMob()">About</a>
   <a href="#skills" onclick="toggleMob()">Skills</a>
-  <a href="#Experience" onclick="toggleMob()">Experience</a>
-  <a href="#projects" onclick="toggleMob()">projects</a>
-  <a href="#certifications" onclick="toggleMob()">certifications</a>
+  <a href="#projects" onclick="toggleMob()">Projects</a>
+  <a href="#experience" onclick="toggleMob()">Experience</a>
+  <a href="#certifications" onclick="toggleMob()">Certs</a>
   <a href="#education" onclick="toggleMob()">Education</a>
   <a href="#contact" onclick="toggleMob()">Contact</a>
 </div>
@@ -380,9 +346,9 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
       </div>
       <div class="hero-location">
         <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        Dallas, Texas &nbsp;·&nbsp; Open to Relocate &nbsp;·&nbsp; Remote/Flexible &nbsp;·&nbsp; Any State USA
+        Dallas, Texas &nbsp;·&nbsp; Open to Relocate &nbsp;·&nbsp; Remote Flexible &nbsp;·&nbsp; Any State USA
       </div>
-      <p class="hero-desc">Results-driven Data Analyst with <strong>5+ years</strong> of experience transforming raw data into meaningful business insights through dashboards, reporting, automation, and analytics across <strong>healthcare</strong> and <strong>financial/Consulting</strong> domains.</p>
+      <p class="hero-desc">Results-driven Data Analyst with <strong>5+ years</strong> of experience transforming raw data into meaningful business insights through dashboards, reporting, automation, and analytics across <strong>healthcare</strong> and <strong>financial</strong> domains.</p>
       <div class="hero-stats">
         <div><div class="hstat-num">5<span class="hstat-unit">+</span></div><div class="hstat-lbl">Yrs Experience</div></div>
         <div style="width:1px;background:var(--border)"></div>
@@ -427,12 +393,12 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
       <div class="about-text">
         <div class="section-label fade">About Me</div>
         <h2 class="section-heading fade fd1">Data Analyst Across <em>Three Domains</em></h2>
-        <p class="fade fd2">I'm a <span class="ahl">Senior Data Analyst</span> with 5+ years delivering end-to-end analytics and BI solutions. My expertise covers risk adjustment, Medicare/Medicaid/ACA claims, banking transaction reporting, and enterprise KPI dashboards always tied to executive decision-making and compliance standards.</p>
-        <p class="fade fd2">I specialize in advanced <span class="ahl">SQL development</span>, <span class="ahl">Power BI &amp; Tableau</span> dashboard engineering with DAX, scalable <span class="ahl">ETL pipeline</span> design on GCP and Azure, and Python-driven statistical analysis delivering actionable insight from complex data at enterprise scale.</p>
+        <p class="fade fd2">I'm a <span class="ahl">Senior Data Analyst</span> with 5+ years delivering end-to-end analytics and BI solutions. My expertise covers risk adjustment, Medicare/Medicaid/ACA claims, banking transaction reporting, and enterprise KPI dashboards — always tied to executive decision-making and compliance standards.</p>
+        <p class="fade fd2">I specialize in advanced <span class="ahl">SQL development</span>, <span class="ahl">Power BI &amp; Tableau</span> dashboard engineering with DAX, scalable <span class="ahl">ETL pipeline</span> design on GCP and Azure, and Python-driven statistical analysis — delivering actionable insight from complex data at enterprise scale.</p>
         <div class="about-domains fade fd3">
           <div class="dp"><div class="dp-icon">🏥</div><div class="dp-name">Healthcare</div><div class="dp-sub">Medicare · Medicaid · ACA</div></div>
           <div class="dp"><div class="dp-icon">🏦</div><div class="dp-name">Financial</div><div class="dp-sub">Banking · Risk · P&amp;L</div></div>
-          <div class="dp"><div class="dp-icon">🤝</div><div class="dp-name">Financial/Consulting</div><div class="dp-sub">Accenture · Capgemini</div></div>
+          <div class="dp"><div class="dp-icon">🤝</div><div class="dp-name">Consulting</div><div class="dp-sub">Accenture · Capgemini</div></div>
         </div>
         <div class="atags fade fd3">
           <span class="atag">Risk Adjustment</span><span class="atag">DAX &amp; Power Query</span>
@@ -473,6 +439,203 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
       <div class="skill-card fade fd1"><span class="sk-icon">📐</span><div class="sk-name">Data Modeling</div><div class="sk-sub">Star · Snowflake Schema · Dimensional Modeling</div></div>
       <div class="skill-card fade fd2"><span class="sk-icon">🏥</span><div class="sk-name">Healthcare Tools</div><div class="sk-sub">EHR · Claims · ICD-10 · HIPAA · HL7 · Risk Adjustment</div></div>
       <div class="skill-card fade fd3"><span class="sk-icon">🏦</span><div class="sk-name">Financial Analytics</div><div class="sk-sub">P&amp;L · Risk KPIs · Reconciliation · Forecasting · AML</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="container">
+    <div style="margin-bottom:48px">
+      <div class="section-label fade">Featured Work</div>
+      <h2 class="section-heading fade fd1">Projects That Drive <em>Real Impact</em></h2>
+      <p class="section-sub fade fd2">Three enterprise analytics solutions spanning healthcare claims, banking risk, and executive reporting — each delivering measurable business outcomes.</p>
+    </div>
+    <div class="proj-grid">
+
+      <!-- P1 -->
+      <div class="proj-card fade">
+        <div class="dash-thumb" style="background:#0d1b2a">
+          <svg width="100%" height="185" viewBox="0 0 400 185" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="32" fill="#1e3a5f"/>
+            <text x="12" y="21" font-size="8.5" fill="#93c5fd" font-family="sans-serif" font-weight="600">ASCENSION HEALTHCARE — CLAIMS ANALYTICS</text>
+            <rect x="10" y="40" width="85" height="40" rx="5" fill="#132338"/>
+            <text x="18" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Total Claims</text>
+            <text x="18" y="68" font-size="12" fill="#60a5fa" font-family="sans-serif" font-weight="700">512,847</text>
+            <rect x="103" y="40" width="75" height="40" rx="5" fill="#132338"/>
+            <text x="111" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Approval Rate</text>
+            <text x="111" y="68" font-size="12" fill="#34d399" font-family="sans-serif" font-weight="700">87.4%</text>
+            <rect x="186" y="40" width="75" height="40" rx="5" fill="#132338"/>
+            <text x="194" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Denial Rate</text>
+            <text x="194" y="68" font-size="12" fill="#f87171" font-family="sans-serif" font-weight="700">12.6%</text>
+            <rect x="269" y="40" width="123" height="40" rx="5" fill="#132338"/>
+            <text x="277" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Avg Processing Days</text>
+            <text x="277" y="68" font-size="12" fill="#a78bfa" font-family="sans-serif" font-weight="700">3.2 days</text>
+            <rect x="10" y="88" width="235" height="88" rx="5" fill="#132338"/>
+            <text x="18" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Monthly Claim Volume Trend</text>
+            <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb" stop-opacity="0.45"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0"/></linearGradient></defs>
+            <path d="M18,162 L54,148 L90,153 L126,136 L162,140 L198,124 L228,127 L228,166 L18,166Z" fill="url(#ga)"/>
+            <path d="M18,162 L54,148 L90,153 L126,136 L162,140 L198,124 L228,127" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+            <circle cx="198" cy="124" r="3" fill="#60a5fa"/>
+            <text x="18" y="175" font-size="5.5" fill="#475569" font-family="sans-serif">Jan  Feb  Mar  Apr  May  Jun</text>
+            <rect x="253" y="88" width="139" height="88" rx="5" fill="#132338"/>
+            <text x="261" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Claims by Type</text>
+            <circle cx="295" cy="142" r="26" fill="none" stroke="#1e3a5f" stroke-width="9"/>
+            <circle cx="295" cy="142" r="26" fill="none" stroke="#3b82f6" stroke-width="9" stroke-dasharray="87 163" stroke-dashoffset="-40"/>
+            <circle cx="295" cy="142" r="26" fill="none" stroke="#34d399" stroke-width="9" stroke-dasharray="50 163" stroke-dashoffset="47"/>
+            <circle cx="295" cy="142" r="26" fill="none" stroke="#f87171" stroke-width="9" stroke-dasharray="26 163" stroke-dashoffset="97"/>
+            <text x="295" y="146" font-size="8" fill="#fff" font-family="sans-serif" font-weight="700" text-anchor="middle">87%</text>
+            <rect x="329" y="115" width="55" height="5" rx="2.5" fill="#1e3a5f"/><rect x="329" y="115" width="44" height="5" rx="2.5" fill="#3b82f6"/>
+            <text x="329" y="112" font-size="5.5" fill="#64748b" font-family="sans-serif">Medicare</text>
+            <rect x="329" y="127" width="55" height="5" rx="2.5" fill="#1e3a5f"/><rect x="329" y="127" width="34" height="5" rx="2.5" fill="#34d399"/>
+            <text x="329" y="124" font-size="5.5" fill="#64748b" font-family="sans-serif">Medicaid</text>
+            <rect x="329" y="139" width="55" height="5" rx="2.5" fill="#1e3a5f"/><rect x="329" y="139" width="16" height="5" rx="2.5" fill="#f87171"/>
+            <text x="329" y="136" font-size="5.5" fill="#64748b" font-family="sans-serif">Denied</text>
+          </svg>
+          <span class="dash-label">Power BI · Healthcare · Ascension</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-num">01 / Project</div>
+          <h3 class="proj-title">Healthcare Claims Analytics Dashboard</h3>
+          <ul class="proj-pts">
+            <li>Partnered with <strong>15+ stakeholders</strong> to translate Medicare, Medicaid &amp; ACA requirements into Power BI dashboards with DAX KPIs and drilldowns</li>
+            <li>Designed <strong>Star &amp; Snowflake data models</strong> across SQL Server, Oracle &amp; BigQuery — eliminating duplicate reporting across 500K+ records</li>
+            <li>Built <strong>ETL pipelines on GCP + Databricks</strong> integrating claims, EHR &amp; member datasets, cutting refresh cycles by 50%</li>
+            <li>Advanced SQL (CTEs, window functions) analyzing millions of claims records with <strong>40% reporting accuracy improvement</strong></li>
+            <li>Automated finance &amp; ops reports tracking claim turnaround, denial rates, reimbursement trends &amp; provider KPIs</li>
+          </ul>
+          <div class="proj-metrics">
+            <span class="proj-metric">35% Faster Reporting</span>
+            <span class="proj-metric">50% ETL Refresh</span>
+            <span class="proj-metric">40% Accuracy Gain</span>
+          </div>
+          <div class="proj-tools">
+            <span class="tool">SQL</span><span class="tool">Power BI</span><span class="tool">DAX</span>
+            <span class="tool">Databricks</span><span class="tool">GCP BigQuery</span><span class="tool">Python</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- P2 -->
+      <div class="proj-card fade fd1">
+        <div class="dash-thumb" style="background:#0c1a2e">
+          <svg width="100%" height="185" viewBox="0 0 400 185" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="32" fill="#0c2340"/>
+            <text x="12" y="21" font-size="8.5" fill="#93c5fd" font-family="sans-serif" font-weight="600">PNC BANK — RISK &amp; TRANSACTION ANALYTICS</text>
+            <rect x="10" y="40" width="90" height="40" rx="5" fill="#0a1f35"/>
+            <text x="18" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Total Transactions</text>
+            <text x="18" y="68" font-size="12" fill="#60a5fa" font-family="sans-serif" font-weight="700">5.2M</text>
+            <rect x="108" y="40" width="78" height="40" rx="5" fill="#0a1f35"/>
+            <text x="116" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Risk Exposure</text>
+            <text x="116" y="68" font-size="12" fill="#f87171" font-family="sans-serif" font-weight="700">$2.4M</text>
+            <rect x="194" y="40" width="78" height="40" rx="5" fill="#0a1f35"/>
+            <text x="202" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Revenue</text>
+            <text x="202" y="68" font-size="12" fill="#34d399" font-family="sans-serif" font-weight="700">$18.7M</text>
+            <rect x="280" y="40" width="112" height="40" rx="5" fill="#0a1f35"/>
+            <text x="288" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Anomalies Flagged</text>
+            <text x="288" y="68" font-size="12" fill="#fbbf24" font-family="sans-serif" font-weight="700">$500K+</text>
+            <rect x="10" y="88" width="185" height="88" rx="5" fill="#0a1f35"/>
+            <text x="18" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Monthly Revenue vs Risk (M)</text>
+            <rect x="20" y="152" width="16" height="22" rx="2" fill="#3b82f6"/><rect x="20" y="148" width="16" height="5" rx="2" fill="#f87171" opacity="0.7"/>
+            <rect x="44" y="145" width="16" height="29" rx="2" fill="#3b82f6"/><rect x="44" y="142" width="16" height="4" rx="2" fill="#f87171" opacity="0.7"/>
+            <rect x="68" y="138" width="16" height="36" rx="2" fill="#3b82f6"/><rect x="68" y="135" width="16" height="4" rx="2" fill="#f87171" opacity="0.7"/>
+            <rect x="92" y="132" width="16" height="42" rx="2" fill="#3b82f6"/><rect x="92" y="129" width="16" height="4" rx="2" fill="#f87171" opacity="0.7"/>
+            <rect x="116" y="125" width="16" height="49" rx="2" fill="#60a5fa"/><rect x="116" y="123" width="16" height="3" rx="2" fill="#f87171" opacity="0.7"/>
+            <rect x="140" y="118" width="16" height="56" rx="2" fill="#60a5fa"/><rect x="140" y="117" width="16" height="2" rx="2" fill="#f87171" opacity="0.7"/>
+            <line x1="16" y1="174" x2="162" y2="174" stroke="#1e3a5f" stroke-width="1"/>
+            <text x="28" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">Jan</text><text x="52" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">Feb</text><text x="76" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">Mar</text><text x="100" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">Apr</text><text x="124" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">May</text><text x="148" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">Jun</text>
+            <rect x="203" y="88" width="189" height="88" rx="5" fill="#0a1f35"/>
+            <text x="211" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Delinquency &amp; Portfolio Performance</text>
+            <path d="M211,165 L237,157 L263,152 L289,158 L315,146 L341,140 L367,135 L385,131 L385,170 L211,170Z" fill="rgba(59,130,246,.12)"/>
+            <path d="M211,165 L237,157 L263,152 L289,158 L315,146 L341,140 L367,135 L385,131" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+            <path d="M211,170 L237,168 L263,164 L289,167 L315,160 L341,156 L367,153 L385,149" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="3,2"/>
+            <circle cx="385" cy="131" r="3" fill="#60a5fa"/>
+          </svg>
+          <span class="dash-label">Tableau · Banking · PNC Bank</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-num">02 / Project</div>
+          <h3 class="proj-title">Banking Risk &amp; Transaction Analytics</h3>
+          <ul class="proj-pts">
+            <li>Gathered <strong>P&amp;L, revenue, budgeting &amp; forecasting</strong> requirements and delivered Tableau dashboards monitoring revenue, delinquency rates &amp; portfolio KPIs</li>
+            <li>Deployed <strong>SSIS ETL pipelines</strong> loading 5M+ customer, loan &amp; transaction records into Azure Data Lake and Databricks</li>
+            <li>Built <strong>optimized SQL stored procedures &amp; reconciliation reports</strong> for month-end close and balance validation</li>
+            <li>Python analysis (Pandas, NumPy) identified <strong>$500K+ in financial anomalies</strong> and improved forecast accuracy by 18%</li>
+            <li>Led <strong>UAT validation &amp; data migration</strong> using Azure Data Factory — achieved 99%+ data consistency in production</li>
+          </ul>
+          <div class="proj-metrics">
+            <span class="proj-metric">$500K+ Anomalies Found</span>
+            <span class="proj-metric">40% Effort Reduced</span>
+            <span class="proj-metric">99%+ Data Accuracy</span>
+          </div>
+          <div class="proj-tools">
+            <span class="tool">SQL</span><span class="tool">Tableau</span><span class="tool">Excel</span>
+            <span class="tool">Python</span><span class="tool">SSIS</span><span class="tool">Azure</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- P3 -->
+      <div class="proj-card fade fd2">
+        <div class="dash-thumb" style="background:#111827">
+          <svg width="100%" height="185" viewBox="0 0 400 185" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="32" fill="#1a2535"/>
+            <text x="12" y="21" font-size="8.5" fill="#93c5fd" font-family="sans-serif" font-weight="600">MASTERCARD — EXECUTIVE KPI REPORTING</text>
+            <rect x="10" y="40" width="90" height="40" rx="5" fill="#1e2d40"/>
+            <text x="18" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">YTD Revenue</text>
+            <text x="18" y="68" font-size="12" fill="#34d399" font-family="sans-serif" font-weight="700">$142.8M</text>
+            <rect x="108" y="40" width="85" height="40" rx="5" fill="#1e2d40"/>
+            <text x="116" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Transactions</text>
+            <text x="116" y="68" font-size="12" fill="#60a5fa" font-family="sans-serif" font-weight="700">98.4M</text>
+            <rect x="201" y="40" width="85" height="40" rx="5" fill="#1e2d40"/>
+            <text x="209" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Chargeback %</text>
+            <text x="209" y="68" font-size="12" fill="#f87171" font-family="sans-serif" font-weight="700">0.8%</text>
+            <rect x="294" y="40" width="98" height="40" rx="5" fill="#1e2d40"/>
+            <text x="302" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Efficiency Gain</text>
+            <text x="302" y="68" font-size="12" fill="#a78bfa" font-family="sans-serif" font-weight="700">+12%</text>
+            <rect x="10" y="88" width="210" height="88" rx="5" fill="#1e2d40"/>
+            <text x="18" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Revenue Trend vs Target (M)</text>
+            <defs><linearGradient id="ge" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#34d399" stop-opacity="0.3"/><stop offset="100%" stop-color="#34d399" stop-opacity="0"/></linearGradient></defs>
+            <path d="M18,165 L54,155 L90,149 L126,142 L162,137 L198,127 L214,123 L214,168 L18,168Z" fill="url(#ge)"/>
+            <path d="M18,165 L54,155 L90,149 L126,142 L162,137 L198,127 L214,123" fill="none" stroke="#34d399" stroke-width="1.5"/>
+            <path d="M18,162 L54,160 L90,157 L126,153 L162,150 L198,146 L214,143" fill="none" stroke="#475569" stroke-width="1" stroke-dasharray="4,3"/>
+            <circle cx="214" cy="123" r="3" fill="#34d399"/>
+            <text x="18" y="179" font-size="5.5" fill="#475569" font-family="sans-serif">Jan  Feb  Mar  Apr  May  Jun</text>
+            <rect x="228" y="88" width="164" height="88" rx="5" fill="#1e2d40"/>
+            <text x="236" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Department Performance</text>
+            <text x="236" y="116" font-size="5.5" fill="#94a3b8" font-family="sans-serif">Operations</text>
+            <rect x="236" y="119" width="148" height="6" rx="3" fill="#2d3f55"/><rect x="236" y="119" width="118" height="6" rx="3" fill="#34d399"/>
+            <text x="390" y="126" font-size="5.5" fill="#34d399" font-family="sans-serif" text-anchor="end">80%</text>
+            <text x="236" y="138" font-size="5.5" fill="#94a3b8" font-family="sans-serif">Finance</text>
+            <rect x="236" y="141" width="148" height="6" rx="3" fill="#2d3f55"/><rect x="236" y="141" width="130" height="6" rx="3" fill="#3b82f6"/>
+            <text x="390" y="148" font-size="5.5" fill="#60a5fa" font-family="sans-serif" text-anchor="end">88%</text>
+            <text x="236" y="160" font-size="5.5" fill="#94a3b8" font-family="sans-serif">Payments</text>
+            <rect x="236" y="163" width="148" height="6" rx="3" fill="#2d3f55"/><rect x="236" y="163" width="105" height="6" rx="3" fill="#a78bfa"/>
+            <text x="390" y="170" font-size="5.5" fill="#a78bfa" font-family="sans-serif" text-anchor="end">71%</text>
+          </svg>
+          <span class="dash-label">Power BI · Executive · Mastercard</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-num">03 / Project</div>
+          <h3 class="proj-title">Executive KPI &amp; Revenue Reporting Dashboard</h3>
+          <ul class="proj-pts">
+            <li>Designed <strong>Tableau &amp; Power BI dashboards</strong> for transaction revenue, payment volumes, chargeback trends &amp; executive KPIs at Mastercard</li>
+            <li>Developed <strong>optimized SQL queries &amp; reporting tables</strong> for fee revenue, merchant performance &amp; customer transaction insights</li>
+            <li>Automated <strong>reconciliation, settlement &amp; financial reporting</strong> using Python &amp; Excel — saving hours of manual work monthly</li>
+            <li>Ad-hoc transaction trend analysis contributing to <strong>12% operational efficiency</strong> gain across departments</li>
+            <li>Supported <strong>predictive forecasting models</strong> on historical transaction data — improved forecast accuracy by 18%</li>
+          </ul>
+          <div class="proj-metrics">
+            <span class="proj-metric">35% Faster Reporting</span>
+            <span class="proj-metric">25% Manual Effort</span>
+            <span class="proj-metric">18% Forecast Accuracy</span>
+          </div>
+          <div class="proj-tools">
+            <span class="tool">Power BI</span><span class="tool">Tableau</span><span class="tool">SQL</span>
+            <span class="tool">Python</span><span class="tool">Excel</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -552,202 +715,6 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="projects" id="projects">
-  <div class="container">
-    <div style="margin-bottom:48px">
-      <div class="section-label fade">Featured Work</div>
-      <h2 class="section-heading fade fd1">Projects That Drive <em>Real Impact</em></h2>
-      <p class="section-sub fade fd2">Three enterprise analytics solutions spanning healthcare claims, banking risk, and executive reporting — each delivering measurable business outcomes.</p>
-    </div>
-    <div class="proj-grid">
-
-      <!-- P1 -->
-      <div class="proj-card fade">
-        <div class="dash-thumb" style="background:#0d1b2a">
-          <svg width="100%" height="185" viewBox="0 0 400 185" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="32" fill="#1e3a5f"/>
-            <text x="12" y="21" font-size="8.5" fill="#93c5fd" font-family="sans-serif" font-weight="600">ASCENSION HEALTHCARE — CLAIMS ANALYTICS</text>
-            <rect x="10" y="40" width="85" height="40" rx="5" fill="#132338"/>
-            <text x="18" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Total Claims</text>
-            <text x="18" y="68" font-size="12" fill="#60a5fa" font-family="sans-serif" font-weight="700">512,847</text>
-            <rect x="103" y="40" width="75" height="40" rx="5" fill="#132338"/>
-            <text x="111" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Approval Rate</text>
-            <text x="111" y="68" font-size="12" fill="#34d399" font-family="sans-serif" font-weight="700">87.4%</text>
-            <rect x="186" y="40" width="75" height="40" rx="5" fill="#132338"/>
-            <text x="194" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Denial Rate</text>
-            <text x="194" y="68" font-size="12" fill="#f87171" font-family="sans-serif" font-weight="700">12.6%</text>
-            <rect x="269" y="40" width="123" height="40" rx="5" fill="#132338"/>
-            <text x="277" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Avg Processing Days</text>
-            <text x="277" y="68" font-size="12" fill="#a78bfa" font-family="sans-serif" font-weight="700">3.2 days</text>
-            <rect x="10" y="88" width="235" height="88" rx="5" fill="#132338"/>
-            <text x="18" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Monthly Claim Volume Trend</text>
-            <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb" stop-opacity="0.45"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0"/></linearGradient></defs>
-            <path d="M18,162 L54,148 L90,153 L126,136 L162,140 L198,124 L228,127 L228,166 L18,166Z" fill="url(#ga)"/>
-            <path d="M18,162 L54,148 L90,153 L126,136 L162,140 L198,124 L228,127" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
-            <circle cx="198" cy="124" r="3" fill="#60a5fa"/>
-            <text x="18" y="175" font-size="5.5" fill="#475569" font-family="sans-serif">Jan  Feb  Mar  Apr  May  Jun</text>
-            <rect x="253" y="88" width="139" height="88" rx="5" fill="#132338"/>
-            <text x="261" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Claims by Type</text>
-            <circle cx="295" cy="142" r="26" fill="none" stroke="#1e3a5f" stroke-width="9"/>
-            <circle cx="295" cy="142" r="26" fill="none" stroke="#3b82f6" stroke-width="9" stroke-dasharray="87 163" stroke-dashoffset="-40"/>
-            <circle cx="295" cy="142" r="26" fill="none" stroke="#34d399" stroke-width="9" stroke-dasharray="50 163" stroke-dashoffset="47"/>
-            <circle cx="295" cy="142" r="26" fill="none" stroke="#f87171" stroke-width="9" stroke-dasharray="26 163" stroke-dashoffset="97"/>
-            <text x="295" y="146" font-size="8" fill="#fff" font-family="sans-serif" font-weight="700" text-anchor="middle">87%</text>
-            <rect x="329" y="115" width="55" height="5" rx="2.5" fill="#1e3a5f"/><rect x="329" y="115" width="44" height="5" rx="2.5" fill="#3b82f6"/>
-            <text x="329" y="112" font-size="5.5" fill="#64748b" font-family="sans-serif">Medicare</text>
-            <rect x="329" y="127" width="55" height="5" rx="2.5" fill="#1e3a5f"/><rect x="329" y="127" width="34" height="5" rx="2.5" fill="#34d399"/>
-            <text x="329" y="124" font-size="5.5" fill="#64748b" font-family="sans-serif">Medicaid</text>
-            <rect x="329" y="139" width="55" height="5" rx="2.5" fill="#1e3a5f"/><rect x="329" y="139" width="16" height="5" rx="2.5" fill="#f87171"/>
-            <text x="329" y="136" font-size="5.5" fill="#64748b" font-family="sans-serif">Denied</text>
-          </svg>
-          <span class="dash-label">Power BI · Healthcare · Ascension</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-num">01 / Project</div>
-          <h3 class="proj-title">Healthcare Claims Analytics Dashboard</h3>
-          <ul class="proj-pts">
-            <li>Partnered with <strong>15+ stakeholders</strong> to translate Medicare, Medicaid &amp; ACA requirements into Power BI dashboards with DAX KPIs and drilldowns</li>
-            <li>Designed <strong>Star &amp; Snowflake data models</strong> across SQL Server, Oracle &amp; BigQuery eliminating duplicate reporting across 500K+ records</li>
-            <li>Built <strong>ETL pipelines on GCP + Databricks</strong> integrating claims, EHR &amp; member datasets, cutting refresh cycles by 50%</li>
-            <li>Advanced SQL (CTEs, window functions) analyzing millions of claims records with <strong>40% reporting accuracy improvement</strong></li>
-            <li>Automated finance &amp; ops reports tracking claim turnaround, denial rates, reimbursement trends &amp; provider KPIs</li>
-          </ul>
-          <div class="proj-metrics">
-            <span class="proj-metric">35% Faster Reporting</span>
-            <span class="proj-metric">50% ETL Refresh</span>
-            <span class="proj-metric">40% Accuracy Gain</span>
-          </div>
-          <div class="proj-tools">
-            <span class="tool">SQL</span><span class="tool">Power BI</span><span class="tool">DAX</span>
-            <span class="tool">Databricks</span><span class="tool">GCP BigQuery</span><span class="tool">Python</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- P2 -->
-      <div class="proj-card fade fd1">
-        <div class="dash-thumb" style="background:#0c1a2e">
-          <svg width="100%" height="185" viewBox="0 0 400 185" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="32" fill="#0c2340"/>
-            <text x="12" y="21" font-size="8.5" fill="#93c5fd" font-family="sans-serif" font-weight="600">PNC BANK — RISK &amp; TRANSACTION ANALYTICS</text>
-            <rect x="10" y="40" width="90" height="40" rx="5" fill="#0a1f35"/>
-            <text x="18" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Total Transactions</text>
-            <text x="18" y="68" font-size="12" fill="#60a5fa" font-family="sans-serif" font-weight="700">5.2M</text>
-            <rect x="108" y="40" width="78" height="40" rx="5" fill="#0a1f35"/>
-            <text x="116" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Risk Exposure</text>
-            <text x="116" y="68" font-size="12" fill="#f87171" font-family="sans-serif" font-weight="700">$2.4M</text>
-            <rect x="194" y="40" width="78" height="40" rx="5" fill="#0a1f35"/>
-            <text x="202" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Revenue</text>
-            <text x="202" y="68" font-size="12" fill="#34d399" font-family="sans-serif" font-weight="700">$18.7M</text>
-            <rect x="280" y="40" width="112" height="40" rx="5" fill="#0a1f35"/>
-            <text x="288" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Anomalies Flagged</text>
-            <text x="288" y="68" font-size="12" fill="#fbbf24" font-family="sans-serif" font-weight="700">$500K+</text>
-            <rect x="10" y="88" width="185" height="88" rx="5" fill="#0a1f35"/>
-            <text x="18" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Monthly Revenue vs Risk (M)</text>
-            <rect x="20" y="152" width="16" height="22" rx="2" fill="#3b82f6"/><rect x="20" y="148" width="16" height="5" rx="2" fill="#f87171" opacity="0.7"/>
-            <rect x="44" y="145" width="16" height="29" rx="2" fill="#3b82f6"/><rect x="44" y="142" width="16" height="4" rx="2" fill="#f87171" opacity="0.7"/>
-            <rect x="68" y="138" width="16" height="36" rx="2" fill="#3b82f6"/><rect x="68" y="135" width="16" height="4" rx="2" fill="#f87171" opacity="0.7"/>
-            <rect x="92" y="132" width="16" height="42" rx="2" fill="#3b82f6"/><rect x="92" y="129" width="16" height="4" rx="2" fill="#f87171" opacity="0.7"/>
-            <rect x="116" y="125" width="16" height="49" rx="2" fill="#60a5fa"/><rect x="116" y="123" width="16" height="3" rx="2" fill="#f87171" opacity="0.7"/>
-            <rect x="140" y="118" width="16" height="56" rx="2" fill="#60a5fa"/><rect x="140" y="117" width="16" height="2" rx="2" fill="#f87171" opacity="0.7"/>
-            <line x1="16" y1="174" x2="162" y2="174" stroke="#1e3a5f" stroke-width="1"/>
-            <text x="28" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">Jan</text><text x="52" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">Feb</text><text x="76" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">Mar</text><text x="100" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">Apr</text><text x="124" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">May</text><text x="148" y="180" font-size="5.5" fill="#475569" font-family="sans-serif">Jun</text>
-            <rect x="203" y="88" width="189" height="88" rx="5" fill="#0a1f35"/>
-            <text x="211" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Delinquency &amp; Portfolio Performance</text>
-            <path d="M211,165 L237,157 L263,152 L289,158 L315,146 L341,140 L367,135 L385,131 L385,170 L211,170Z" fill="rgba(59,130,246,.12)"/>
-            <path d="M211,165 L237,157 L263,152 L289,158 L315,146 L341,140 L367,135 L385,131" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
-            <path d="M211,170 L237,168 L263,164 L289,167 L315,160 L341,156 L367,153 L385,149" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="3,2"/>
-            <circle cx="385" cy="131" r="3" fill="#60a5fa"/>
-          </svg>
-          <span class="dash-label">Tableau · Banking · PNC Bank</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-num">02 / Project</div>
-          <h3 class="proj-title">Banking Risk &amp; Transaction Analytics</h3>
-          <ul class="proj-pts">
-            <li>Gathered <strong>P&amp;L, revenue, budgeting &amp; forecasting</strong> requirements and delivered Tableau dashboards monitoring revenue, delinquency rates &amp; portfolio KPIs</li>
-            <li>Deployed <strong>SSIS ETL pipelines</strong> loading 5M+ customer, loan &amp; transaction records into Azure Data Lake and Databricks</li>
-            <li>Built <strong>optimized SQL stored procedures &amp; reconciliation reports</strong> for month-end close and balance validation</li>
-            <li>Python analysis (Pandas, NumPy) identified <strong>$500K+ in financial anomalies</strong> and improved forecast accuracy by 18%</li>
-            <li>Led <strong>UAT validation &amp; data migration</strong> using Azure Data Factory achieved 99%+ data consistency in production</li>
-          </ul>
-          <div class="proj-metrics">
-            <span class="proj-metric">$500K+ Anomalies Found</span>
-            <span class="proj-metric">40% Effort Reduced</span>
-            <span class="proj-metric">99%+ Data Accuracy</span>
-          </div>
-          <div class="proj-tools">
-            <span class="tool">SQL</span><span class="tool">Tableau</span><span class="tool">Excel</span>
-            <span class="tool">Python</span><span class="tool">SSIS</span><span class="tool">Azure</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- P3 -->
-      <div class="proj-card fade fd2">
-        <div class="dash-thumb" style="background:#111827">
-          <svg width="100%" height="185" viewBox="0 0 400 185" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="32" fill="#1a2535"/>
-            <text x="12" y="21" font-size="8.5" fill="#93c5fd" font-family="sans-serif" font-weight="600">MASTERCARD — EXECUTIVE KPI REPORTING</text>
-            <rect x="10" y="40" width="90" height="40" rx="5" fill="#1e2d40"/>
-            <text x="18" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">YTD Revenue</text>
-            <text x="18" y="68" font-size="12" fill="#34d399" font-family="sans-serif" font-weight="700">$142.8M</text>
-            <rect x="108" y="40" width="85" height="40" rx="5" fill="#1e2d40"/>
-            <text x="116" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Transactions</text>
-            <text x="116" y="68" font-size="12" fill="#60a5fa" font-family="sans-serif" font-weight="700">98.4M</text>
-            <rect x="201" y="40" width="85" height="40" rx="5" fill="#1e2d40"/>
-            <text x="209" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Chargeback %</text>
-            <text x="209" y="68" font-size="12" fill="#f87171" font-family="sans-serif" font-weight="700">0.8%</text>
-            <rect x="294" y="40" width="98" height="40" rx="5" fill="#1e2d40"/>
-            <text x="302" y="54" font-size="6.5" fill="#64748b" font-family="sans-serif">Efficiency Gain</text>
-            <text x="302" y="68" font-size="12" fill="#a78bfa" font-family="sans-serif" font-weight="700">+12%</text>
-            <rect x="10" y="88" width="210" height="88" rx="5" fill="#1e2d40"/>
-            <text x="18" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Revenue Trend vs Target (M)</text>
-            <defs><linearGradient id="ge" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#34d399" stop-opacity="0.3"/><stop offset="100%" stop-color="#34d399" stop-opacity="0"/></linearGradient></defs>
-            <path d="M18,165 L54,155 L90,149 L126,142 L162,137 L198,127 L214,123 L214,168 L18,168Z" fill="url(#ge)"/>
-            <path d="M18,165 L54,155 L90,149 L126,142 L162,137 L198,127 L214,123" fill="none" stroke="#34d399" stroke-width="1.5"/>
-            <path d="M18,162 L54,160 L90,157 L126,153 L162,150 L198,146 L214,143" fill="none" stroke="#475569" stroke-width="1" stroke-dasharray="4,3"/>
-            <circle cx="214" cy="123" r="3" fill="#34d399"/>
-            <text x="18" y="179" font-size="5.5" fill="#475569" font-family="sans-serif">Jan  Feb  Mar  Apr  May  Jun</text>
-            <rect x="228" y="88" width="164" height="88" rx="5" fill="#1e2d40"/>
-            <text x="236" y="101" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Department Performance</text>
-            <text x="236" y="116" font-size="5.5" fill="#94a3b8" font-family="sans-serif">Operations</text>
-            <rect x="236" y="119" width="148" height="6" rx="3" fill="#2d3f55"/><rect x="236" y="119" width="118" height="6" rx="3" fill="#34d399"/>
-            <text x="390" y="126" font-size="5.5" fill="#34d399" font-family="sans-serif" text-anchor="end">80%</text>
-            <text x="236" y="138" font-size="5.5" fill="#94a3b8" font-family="sans-serif">Finance</text>
-            <rect x="236" y="141" width="148" height="6" rx="3" fill="#2d3f55"/><rect x="236" y="141" width="130" height="6" rx="3" fill="#3b82f6"/>
-            <text x="390" y="148" font-size="5.5" fill="#60a5fa" font-family="sans-serif" text-anchor="end">88%</text>
-            <text x="236" y="160" font-size="5.5" fill="#94a3b8" font-family="sans-serif">Payments</text>
-            <rect x="236" y="163" width="148" height="6" rx="3" fill="#2d3f55"/><rect x="236" y="163" width="105" height="6" rx="3" fill="#a78bfa"/>
-            <text x="390" y="170" font-size="5.5" fill="#a78bfa" font-family="sans-serif" text-anchor="end">71%</text>
-          </svg>
-          <span class="dash-label">Power BI · Executive · Mastercard</span>
-        </div>
-        <div class="proj-body">
-          <div class="proj-num">03 / Project</div>
-          <h3 class="proj-title">Executive KPI &amp; Revenue Reporting Dashboard</h3>
-          <ul class="proj-pts">
-            <li>Designed <strong>Tableau &amp; Power BI dashboards</strong> for transaction revenue, payment volumes, chargeback trends &amp; executive KPIs at Mastercard</li>
-            <li>Developed <strong>optimized SQL queries &amp; reporting tables</strong> for fee revenue, merchant performance &amp; customer transaction insights</li>
-            <li>Automated <strong>reconciliation, settlement &amp; financial reporting</strong> using Python &amp; Excel saving hours of manual work monthly</li>
-            <li>Ad-hoc transaction trend analysis contributing to <strong>12% operational efficiency</strong> gain across departments</li>
-            <li>Supported <strong>predictive forecasting models</strong> on historical transaction data improved forecast accuracy by 18%</li>
-          </ul>
-          <div class="proj-metrics">
-            <span class="proj-metric">35% Faster Reporting</span>
-            <span class="proj-metric">25% Manual Effort</span>
-            <span class="proj-metric">18% Forecast Accuracy</span>
-          </div>
-          <div class="proj-tools">
-            <span class="tool">Power BI</span><span class="tool">Tableau</span><span class="tool">SQL</span>
-            <span class="tool">Python</span><span class="tool">Excel</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 <!-- CERTIFICATIONS -->
 <section class="certifications" id="certifications">
   <div class="container">
@@ -825,21 +792,12 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
     <p class="section-sub fade fd2">Open to <strong style="color:var(--text)">Full-Time or Contract</strong> roles in Data Analytics, BI Development, Business Analysis, Healthcare Analytics, or Financial Analytics — any state in USA. Ready to relocate or work remotely.</p>
     <div class="contact-inner">
       <div class="fade fd1">
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kalyanb1917@gmail.com" target="_blank" class="c-item">
-<div class="c-icon">✉️</div>
-<div>
-<div class="c-lbl">Email</div>
-<div class="c-val">kalyanb1917@gmail.com</div>
-</div>
-</a>
-
-<a href="tel:+19728770715" class="c-item">
-<div class="c-icon">📞</div>
-<div>
-<div class="c-lbl">Phone</div>
-<div class="c-val">+1 (972) 877-0715</div>
-</div>
-</a>
+        <a href="mailto:kalyanb1917@gmail.com" class="c-item">
+          <div class="c-icon">📧</div><div><div class="c-lbl">Email</div><div class="c-val">kalyanb1917@gmail.com</div></div>
+        </a>
+        <a href="tel:+19728770715" class="c-item">
+          <div class="c-icon">📞</div><div><div class="c-lbl">Phone</div><div class="c-val">+1 (972) 877-0715</div></div>
+        </a>
         <a href="https://www.linkedin.com/in/kalyan-nayak-bhukya-8897b8250" target="_blank" class="c-item">
           <div class="c-icon">💼</div><div><div class="c-lbl">LinkedIn</div><div class="c-val" style="color:var(--blue-lt)">kalyan-nayak-bhukya-8897b8250</div></div>
         </a>
@@ -847,35 +805,28 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
           <div class="c-icon">💻</div><div><div class="c-lbl">GitHub</div><div class="c-val" style="color:var(--blue-lt)">kalyanb1917-ai/kalyan-portfolio</div></div>
         </a>
         <div class="c-item" style="cursor:default">
-          <div class="c-icon">📍</div><div><div class="c-lbl">Location &amp; Availability</div><div class="c-val">Dallas . Texas · USA</div></div>
+          <div class="c-icon">📍</div><div><div class="c-lbl">Location &amp; Availability</div><div class="c-val">Dallas, TX · Relocate · Remote · Any USA State</div></div>
         </div>
         <div class="avail-pill-dark"><div class="avail-dot3"></div><strong>Actively Seeking Opportunities</strong></div>
       </div>
 
       <div class="contact-form fade fd2">
-  <div class="cf-title">Send a Message</div>
-  <div class="cf-sub">Fill details and click Send Message.</div>
-
-  <form id="contact-form">
-
-    <input class="cf-input" type="text" id="cf-first" placeholder="First Name" required>
-
-    <input class="cf-input" type="text" id="cf-last" placeholder="Last Name" required>
-
-    <input class="cf-input" type="email" id="cf-email" placeholder="Your Gmail" required>
-
-    <input class="cf-input" type="text" id="cf-subject" placeholder="Subject" required>
-
-    <textarea class="cf-textarea" id="cf-msg" placeholder="Message" required></textarea>
-
-    <button type="submit" class="btn-gmail-full" id="cf-send-btn">
-      Send Message
-    </button>
-
-    <div id="cf-status"></div>
-
-  </form>
-</div>
+        <div class="cf-title">Send a Message</div>
+        <div class="cf-sub">Fill in your details and click "Send via Gmail" — it will open Gmail compose with your message pre-filled and addressed directly to me.</div>
+        <div class="cf-row">
+          <div><label class="cf-label">First Name</label><input class="cf-input" type="text" id="cf-first" placeholder="John"/></div>
+          <div><label class="cf-label">Last Name</label><input class="cf-input" type="text" id="cf-last" placeholder="Smith"/></div>
+        </div>
+        <div class="cf-group"><label class="cf-label">Your Gmail</label><input class="cf-input" type="email" id="cf-email" placeholder="you@gmail.com"/></div>
+        <div class="cf-group"><label class="cf-label">Subject</label><input class="cf-input" type="text" id="cf-subject" placeholder="Data Analyst Opportunity — Dallas / Remote"/></div>
+        <div class="cf-group"><label class="cf-label">Message</label><textarea class="cf-textarea" id="cf-msg" placeholder="Hi Kalyan, I came across your portfolio and would like to connect about..."></textarea></div>
+        <a class="btn-gmail-full" id="cf-send" href="#" onclick="sendGmail(event)">
+          <svg width="16" height="16" viewBox="0 0 48 48" fill="none"><path d="M6 36V12l18 12 18-12v24H6z" fill="none" stroke="white" stroke-width="2.5"/><path d="M6 12l18 12 18-12" stroke="white" stroke-width="2.5" fill="none"/></svg>
+          Send via Gmail
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -920,7 +871,15 @@ function sendGmail(e){
   const name=(first+' '+last).trim()||'Someone';
   const body=`Hi Kalyan,
 
+${msg}
+
+Best regards,
+${name}${email?' ('+email+')':''}`;
+  const url=`https://mail.google.com/mail/?view=cm&fs=1&to=kalyanb1917@gmail.com&su=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+  window.open(url,'_blank');
+}
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script>
 emailjs.init({
   publicKey: "7WldpWTPKnpoxGDAo"
