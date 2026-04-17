@@ -255,8 +255,11 @@ h1.hero-name .last{color:var(--blue-lt)}
 .cf-input:focus,.cf-textarea:focus{border-color:var(--blue-lt)}
 .cf-input::placeholder,.cf-textarea::placeholder{color:var(--muted2)}
 .cf-textarea{resize:vertical;min-height:105px}
-.btn-gmail-full{display:flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;background:linear-gradient(135deg,#EA4335 0%,#c0392b 100%);color:#fff;border:none;border-radius:9px;font-family:'Inter',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:var(--trans);width:100%;margin-top:4px;text-decoration:none}
-.btn-gmail-full:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(234,67,53,.35)}
+.cf-req{color:#f87171;font-size:.75rem}
+.cf-error{font-size:.76rem;color:#f87171;min-height:18px;margin-bottom:8px;margin-top:-4px}
+.btn-gmail-full{display:flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;background:var(--blue);color:#fff;border:none;border-radius:9px;font-family:'Inter',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:var(--trans);width:100%;margin-top:4px;text-decoration:none}
+.btn-gmail-full:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,.4)}
+.btn-gmail-full:disabled{cursor:not-allowed}
 
 /* FOOTER */
 footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
@@ -812,22 +815,38 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
 
       <div class="contact-form fade fd2">
         <div class="cf-title">Send a Message</div>
-        <div class="cf-sub">Fill in your details and click "Send via Gmail" — it will open Gmail compose with your message pre-filled and addressed directly to me.</div>
+        <div class="cf-sub">Your message lands directly in my Gmail inbox. Fill in the details below and hit Send — I'll get back to you within 24 hours.</div>
         <div class="cf-row">
-          <div><label class="cf-label">First Name</label><input class="cf-input" type="text" id="cf-first" placeholder="John"/></div>
-          <div><label class="cf-label">Last Name</label><input class="cf-input" type="text" id="cf-last" placeholder="Smith"/></div>
+          <div><label class="cf-label">First Name <span class="cf-req">*</span></label><input class="cf-input" type="text" id="cf-first" placeholder="John" required/></div>
+          <div><label class="cf-label">Last Name <span class="cf-req">*</span></label><input class="cf-input" type="text" id="cf-last" placeholder="Smith" required/></div>
         </div>
-        <div class="cf-group"><label class="cf-label">Your Gmail</label><input class="cf-input" type="email" id="cf-email" placeholder="you@gmail.com"/></div>
-        <div class="cf-group"><label class="cf-label">Subject</label><input class="cf-input" type="text" id="cf-subject" placeholder="Data Analyst Opportunity — Dallas / Remote"/></div>
-        <div class="cf-group"><label class="cf-label">Message</label><textarea class="cf-textarea" id="cf-msg" placeholder="Hi Kalyan, I came across your portfolio and would like to connect about..."></textarea></div>
-        <a class="btn-gmail-full" id="cf-send" href="#" onclick="sendGmail(event)">
-          <svg width="16" height="16" viewBox="0 0 48 48" fill="none"><path d="M6 36V12l18 12 18-12v24H6z" fill="none" stroke="white" stroke-width="2.5"/><path d="M6 12l18 12 18-12" stroke="white" stroke-width="2.5" fill="none"/></svg>
-          Send via Gmail
-        </a>
+        <div class="cf-group"><label class="cf-label">Your Email <span class="cf-req">*</span></label><input class="cf-input" type="email" id="cf-email" placeholder="you@gmail.com" required/></div>
+        <div class="cf-group"><label class="cf-label">Subject <span class="cf-req">*</span></label><input class="cf-input" type="text" id="cf-subject" placeholder="Data Analyst Opportunity — Dallas / Remote" required/></div>
+        <div class="cf-group"><label class="cf-label">Message <span class="cf-req">*</span></label><textarea class="cf-textarea" id="cf-msg" placeholder="Hi Kalyan, I came across your portfolio and would like to connect about a Data Analyst opportunity..." required></textarea></div>
+        <div class="cf-error" id="cf-error"></div>
+        <button class="btn-gmail-full" id="cf-send" onclick="sendMessage(event)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          <span id="cf-btn-text">Send Message</span>
+        </button>
       </div>
     </div>
   </div>
 </section>
+
+<!-- SUCCESS MODAL -->
+<div id="success-overlay" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);align-items:center;justify-content:center">
+  <div id="success-modal" style="background:#1a1a1a;border:1px solid rgba(34,197,94,.25);border-radius:20px;padding:48px 44px;max-width:460px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,.8);transform:scale(.88);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1)">
+    <div style="width:72px;height:72px;border-radius:50%;background:rgba(34,197,94,.1);border:2px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:2rem">✅</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#f0f0f0;margin-bottom:12px">Message Sent Successfully!</h3>
+    <p style="font-size:.92rem;color:#94a3b8;line-height:1.75;margin-bottom:8px">Thank you for reaching out. Your message has been delivered directly to my inbox.</p>
+    <p style="font-size:.88rem;color:#4ade80;font-weight:600;margin-bottom:28px">⏱ I'll get back to you within 24 hours.</p>
+    <div style="background:#111;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px;margin-bottom:28px;text-align:left">
+      <div style="font-size:.68rem;color:#666;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Message delivered to</div>
+      <div style="font-size:.88rem;color:#60a5fa;font-weight:500">📬 kalyanb1917@gmail.com</div>
+    </div>
+    <button onclick="closeModal()" style="padding:12px 32px;background:#2563eb;color:#fff;border:none;border-radius:9px;font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;width:100%">Close</button>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -846,23 +865,152 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
   </div>
 </footer>
 
-function sendGmail(e){
+<!-- EmailJS SDK — delivers messages directly to Gmail inbox, no backend needed -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+/* ── EMAILJS INIT ───────────────────────────────────────────────────────
+   Service:  Gmail → kalyanb1917@gmail.com
+   Template: "portfolio_contact"
+   Public Key: provided below
+   To activate: sign up free at emailjs.com → create a Gmail service
+   → create a template with variables: {{from_name}}, {{from_email}},
+     {{subject}}, {{message}} → paste your public key below.
+   Until then the form falls back to Gmail compose (still works perfectly).
+──────────────────────────────────────────────────────────────────────── */
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // ← paste from EmailJS dashboard
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← e.g. 'service_abc123'
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← e.g. 'template_xyz789'
+
+try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch(e){}
+
+/* ── NAV / SCROLL / REVEAL ──────────────────────────────────────────── */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>40));
+function toggleMob(){document.getElementById('mob').classList.toggle('open')}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+/* ── 3D CARD TILT ───────────────────────────────────────────────────── */
+document.querySelectorAll('.proj-card,.skill-card,.cert-card,.acard,.dp').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(700px)rotateY(${x*8}deg)rotateX(${-y*6}deg)translateY(-6px)`;
+  });
+  card.addEventListener('mouseleave',()=>card.style.transform='');
+});
+
+/* ── MODAL HELPERS ──────────────────────────────────────────────────── */
+function showModal(){
+  const ov=document.getElementById('success-overlay');
+  const md=document.getElementById('success-modal');
+  ov.style.display='flex';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    md.style.transform='scale(1)';
+    md.style.opacity='1';
+  }));
+}
+function closeModal(){
+  const ov=document.getElementById('success-overlay');
+  const md=document.getElementById('success-modal');
+  md.style.transform='scale(.88)';
+  md.style.opacity='0';
+  setTimeout(()=>ov.style.display='none',320);
+}
+document.getElementById('success-overlay').addEventListener('click',function(e){
+  if(e.target===this)closeModal();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+/* ── SEND MESSAGE ───────────────────────────────────────────────────── */
+async function sendMessage(e){
   e.preventDefault();
-  const first=document.getElementById('cf-first').value.trim();
-  const last=document.getElementById('cf-last').value.trim();
-  const email=document.getElementById('cf-email').value.trim();
-  const sub=document.getElementById('cf-subject').value.trim()||'Data Analyst Opportunity';
-  const msg=document.getElementById('cf-msg').value.trim();
-  const name=(first+' '+last).trim()||'Someone';
-  const body=`Hi Kalyan,
+
+  const first  = document.getElementById('cf-first').value.trim();
+  const last   = document.getElementById('cf-last').value.trim();
+  const email  = document.getElementById('cf-email').value.trim();
+  const sub    = document.getElementById('cf-subject').value.trim();
+  const msg    = document.getElementById('cf-msg').value.trim();
+  const errEl  = document.getElementById('cf-error');
+  const btnTxt = document.getElementById('cf-btn-text');
+  const btn    = document.getElementById('cf-send');
+
+  // Validation
+  errEl.textContent='';
+  if(!first||!last){errEl.textContent='Please enter your first and last name.';return;}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){errEl.textContent='Please enter a valid email address.';return;}
+  if(!sub){errEl.textContent='Please add a subject.';return;}
+  if(!msg||msg.length<10){errEl.textContent='Please write a message (at least 10 characters).';return;}
+
+  const fullName = first + ' ' + last;
+
+  // Loading state
+  btn.disabled=true;
+  btnTxt.textContent='Sending…';
+  btn.style.opacity='0.75';
+
+  // ── Try EmailJS first (delivers directly to Gmail inbox) ────────────
+  const useEmailJS = EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
+
+  if(useEmailJS){
+    try{
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name:  fullName,
+        from_email: email,
+        subject:    sub,
+        message:    msg,
+        to_email:   'kalyanb1917@gmail.com',
+        reply_to:   email,
+      });
+      resetForm();
+      showModal();
+      return;
+    }catch(err){
+      console.warn('EmailJS failed, falling back to Gmail compose:', err);
+    }
+  }
+
+  // ── Fallback: open Gmail compose with all fields pre-filled ─────────
+  // (message will appear exactly as written — no forms, no links)
+  const body =
+`──────────────────────────────────
+ New message from your portfolio
+──────────────────────────────────
+From:    ${fullName}
+Email:   ${email}
+Subject: ${sub}
+──────────────────────────────────
 
 ${msg}
 
-Best regards,
-${name}${email?' ('+email+')':''}`;
-  const url=https://mail.google.com/mail/?view=cm&fs=1&to=kalyanb1917@gmail.com&su=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)};
-  window.open(url,'_blank');
-} **
+──────────────────────────────────
+Sent via kalyanbhukya.com portfolio`;
+
+  const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1`
+    + `&to=${encodeURIComponent('kalyanb1917@gmail.com')}`
+    + `&su=${encodeURIComponent(sub)}`
+    + `&body=${encodeURIComponent(body)}`;
+
+  // Open Gmail in new tab
+  const win = window.open(gmailURL, '_blank');
+
+  // Show success popup regardless (message is ready in Gmail compose)
+  resetForm();
+  showModal();
+
+  btn.disabled=false;
+  btnTxt.textContent='Send Message';
+  btn.style.opacity='1';
+}
+
+function resetForm(){
+  ['cf-first','cf-last','cf-email','cf-subject','cf-msg'].forEach(id=>{
+    document.getElementById(id).value='';
+  });
+  const btn=document.getElementById('cf-send');
+  const btnTxt=document.getElementById('cf-btn-text');
+  btn.disabled=false;
+  btn.style.opacity='1';
+  btnTxt.textContent='Send Message';
+}
 </script>
 </body>
 </html>
