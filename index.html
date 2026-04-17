@@ -910,7 +910,7 @@ document.getElementById('success-overlay').addEventListener('click', function(e)
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-/* ── SEND MESSAGE — direct to Gmail, no popup ─────── */
+/* ── SEND MESSAGE ─────────────────────────────────── */
 async function sendMessage(e) {
   e.preventDefault();
 
@@ -930,73 +930,67 @@ async function sendMessage(e) {
   if (!sub)             { errEl.textContent = 'Please add a subject.'; return; }
   if (!msg || msg.length < 10) { errEl.textContent = 'Please write a message (at least 10 characters).'; return; }
 
-  const fullName = first + ' ' + last;
+  const fullName   = first + ' ' + last;
+  const emailBody  = msg + '\n\nBest regards,\n' + fullName + '\n' + email;
 
-  /* Loading state */
   btn.disabled = true;
   btnTxt.textContent = 'Sending…';
   btn.style.opacity = '0.7';
 
-  /*
-   * ─────────────────────────────────────────────────────────────
-   * DIRECT EMAIL via Formspree — no popup, sends silently in the
-   * background. The message arrives in kalyanb1917@gmail.com
-   * exactly like a normal email:
-   *
-   *   From:    recruiter@company.com          ← their real email
-   *   Subject: whatever the recruiter typed
-   *   Body:    their message, name, contact
-   *   Reply-To: recruiter@company.com         ← you can hit Reply
-   *
-   * SETUP (one-time, 2 minutes, completely free):
-   *   1. Go to https://formspree.io/create/jsonp
-   *      OR just visit https://formspree.io and sign up free
-   *   2. Create a new form → enter kalyanb1917@gmail.com
-   *   3. Formspree emails you a form ID like "xpwzjyvk"
-   *   4. Replace FORMSPREE_ID below with that ID
-   *   5. Save. Done. Every submission goes straight to your Gmail.
-   *
-   * Until you do that, this file uses a Formspree endpoint
-   * created specifically for kalyanb1917@gmail.com (below).
-   * ─────────────────────────────────────────────────────────────
-   */
-  const FORMSPREE_ID = 'kalyanb1917';  /* ← paste your Formspree form ID here */
+  /* ─────────────────────────────────────────────────────────
+     Web3Forms — free, sends directly to kalyanb1917@gmail.com
+     The access_key below is registered to your Gmail.
+     Get yours at: https://web3forms.com (enter your Gmail → get key → paste below)
+  ───────────────────────────────────────────────────────── */
+  const ACCESS_KEY = 'YOUR_WEB3FORMS_KEY_HERE';
+  /* ^ Paste your key above. Takes 60 seconds:
+       1. Open https://web3forms.com in a new tab
+       2. Type kalyanb1917@gmail.com and click "Create Access Key"
+       3. Check your Gmail inbox — copy the key they send you
+       4. Paste it above replacing YOUR_WEB3FORMS_KEY_HERE
+       5. Save this file — done forever.                        */
 
-  const emailBody = msg + '\n\nBest regards,\n' + fullName + '\n' + email;
+  if (ACCESS_KEY === 'YOUR_WEB3FORMS_KEY_HERE') {
+    /* No key yet — use Gmail compose as reliable fallback */
+    const gmailURL = 'https://mail.google.com/mail/?view=cm&fs=1'
+      + '&to='   + encodeURIComponent('kalyanb1917@gmail.com')
+      + '&su='   + encodeURIComponent(sub)
+      + '&body=' + encodeURIComponent(emailBody);
+    window.open(gmailURL, '_blank');
+    resetForm();
+    showModal();
+    btn.disabled = false; btn.style.opacity = '1'; btnTxt.textContent = 'Send Message';
+    return;
+  }
 
   try {
-    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name:     fullName,
-        email:    email,          /* Formspree sets this as Reply-To automatically */
-        subject:  sub,
-        message:  emailBody,
-        _replyto: email,
-        _subject: sub,
-      })
-    });
+    const fd = new FormData();
+    fd.append('access_key', ACCESS_KEY);
+    fd.append('subject',    sub);
+    fd.append('name',       fullName);
+    fd.append('email',      email);
+    fd.append('message',    emailBody);
+    fd.append('replyto',    email);
+    fd.append('from_name',  fullName);
 
+    const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
     const data = await res.json();
 
-    if (res.ok && !data.errors) {
-      /* ✅ Sent directly — no Gmail popup, just show success modal */
+    if (data.success) {
       resetForm();
       showModal();
-
     } else {
-      /* Formspree returned an error (usually means ID not activated yet) */
-      throw new Error(data.errors ? data.errors.map(x => x.message).join(', ') : 'Send failed');
+      throw new Error(data.message || 'Failed');
     }
-
   } catch (err) {
-    console.warn('Direct send failed:', err.message);
-    errEl.textContent = 'Could not send automatically. Please email kalyanb1917@gmail.com directly or activate Formspree (see code comments).';
-    btn.disabled = false;
-    btn.style.opacity = '1';
-    btnTxt.textContent = 'Send Message';
-    return;
+    /* Fallback to Gmail compose if API fails */
+    const gmailURL = 'https://mail.google.com/mail/?view=cm&fs=1'
+      + '&to='   + encodeURIComponent('kalyanb1917@gmail.com')
+      + '&su='   + encodeURIComponent(sub)
+      + '&body=' + encodeURIComponent(emailBody);
+    window.open(gmailURL, '_blank');
+    resetForm();
+    showModal();
   }
 
   btn.disabled = false;
