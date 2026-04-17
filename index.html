@@ -853,22 +853,48 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
       </div>
 
       <div class="contact-form fade fd2">
-        <div class="cf-title">Send a Message</div>
-        <div class="cf-sub">Fill in your details and click "Send via Gmail" — it will open Gmail compose with your message pre-filled and addressed directly to me.</div>
-        <div class="cf-row">
-          <div><label class="cf-label">First Name</label><input class="cf-input" type="text" id="cf-first" placeholder="John"/></div>
-          <div><label class="cf-label">Last Name</label><input class="cf-input" type="text" id="cf-last" placeholder="Smith"/></div>
-        </div>
-        <div class="cf-group"><label class="cf-label">Your Gmail</label><input class="cf-input" type="email" id="cf-email" placeholder="you@gmail.com"/></div>
-        <div class="cf-group"><label class="cf-label">Subject</label><input class="cf-input" type="text" id="cf-subject" placeholder="Data Analyst Opportunity"/></div>
-        <div class="cf-group"><label class="cf-label">Message</label><textarea class="cf-textarea" id="cf-msg" placeholder="Hi Kalyan, I came across your portfolio and would like to connect about..."></textarea></div>
-        <a class="btn-gmail-full" id="cf-send" href="#" onclick="sendGmail(event)">
-          <svg width="16" height="16" viewBox="0 0 48 48" fill="none"><path d="M6 36V12l18 12 18-12v24H6z" fill="none" stroke="white" stroke-width="2.5"/><path d="M6 12l18 12 18-12" stroke="white" stroke-width="2.5" fill="none"/></svg>
-          Send via Gmail
-        </a>
+  <div class="cf-title">Send a Message</div>
+  <div class="cf-sub">
+    Fill in your details and click "Send Message" — your message will be sent directly to my inbox.
+  </div>
+
+  <form action="https://formsubmit.co/kalyanb1917@gmail.com" method="POST">
+    <div class="cf-row">
+      <div>
+        <label class="cf-label">First Name</label>
+        <input class="cf-input" type="text" name="first_name" placeholder="John" required>
+      </div>
+      <div>
+        <label class="cf-label">Last Name</label>
+        <input class="cf-input" type="text" name="last_name" placeholder="Smith" required>
       </div>
     </div>
-  </div>
+
+    <div class="cf-group">
+      <label class="cf-label">Your Gmail</label>
+      <input class="cf-input" type="email" name="email" placeholder="you@gmail.com" required>
+    </div>
+
+    <div class="cf-group">
+      <label class="cf-label">Subject</label>
+      <input class="cf-input" type="text" name="subject" placeholder="Data Analyst Opportunity" required>
+    </div>
+
+    <div class="cf-group">
+      <label class="cf-label">Message</label>
+      <textarea class="cf-textarea" name="message" placeholder="Hi Kalyan, I came across your portfolio and would like to connect." required></textarea>
+    </div>
+
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_subject" value="New Portfolio Message">
+    <input type="hidden" name="_next" value="https://kalyanb1917-ai.github.io/kalyan-portfolio/">
+
+    <button type="submit" class="btn-gmail-full">
+      Send Message
+    </button>
+  </form>
+</div>
 </section>
 
 <!-- FOOTER -->
