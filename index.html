@@ -107,12 +107,46 @@ h1.hero-name .last{color:var(--blue-lt)}
 .btn-ghost:hover{border-color:var(--text2);color:var(--text);transform:translateY(-1px)}
 
 /* PHOTO — right column, same height as name */
-.hero-photo-col{display:flex;align-items:flex-start;justify-content:center;padding-top:4px}
-.photo-frame{position:relative;width:320px}
-.photo-ring-outer{position:absolute;inset:-10px;border-radius:50%;border:1px solid rgba(59,130,246,.18);pointer-events:none}
-.photo-ring-inner{position:absolute;inset:-20px;border-radius:50%;border:1px solid rgba(59,130,246,.08);pointer-events:none}
-.photo-img{width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;object-position:top center;border:3px solid rgba(255,255,255,.08);box-shadow:0 16px 60px rgba(0,0,0,.6),0 0 0 1px rgba(37,99,235,.15);position:relative;z-index:2}
+.hero-photo-col{
+  display:flex;
+  align-items:center;      /* vertical center */
+  justify-content:center; /* horizontal center inside column */
+  padding-top:0;
+}
 
+.photo-frame{
+  position:relative;
+  width:320px;
+}
+
+.photo-ring-outer{
+  position:absolute;
+  inset:-10px;
+  border-radius:50%;
+  border:1px solid rgba(59,130,246,.18);
+  pointer-events:none;
+}
+
+.photo-ring-inner{
+  position:absolute;
+  inset:-20px;
+  border-radius:50%;
+  border:1px solid rgba(59,130,246,.08);
+  pointer-events:none;
+}
+
+.photo-img{
+  width:100%;
+  aspect-ratio:1;
+  border-radius:50%;
+  object-fit:cover;
+  object-position:top center;
+  border:3px solid rgba(255,255,255,.08);
+  box-shadow:0 16px 60px rgba(0,0,0,.6),
+             0 0 0 1px rgba(37,99,235,.15);
+  position:relative;
+  z-index:2;
+}
 /* AVAILABILITY BANNER */
 .avail-strip{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 22px;margin-top:32px;display:flex;align-items:flex-start;gap:12px}
 .avail-dot2{width:8px;height:8px;border-radius:50%;background:var(--green);margin-top:4px;flex-shrink:0;box-shadow:0 0 6px var(--green);animation:pulse 2.5s infinite}
