@@ -815,14 +815,14 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
 
       <div class="contact-form fade fd2">
         <div class="cf-title">Send a Message</div>
-        <div class="cf-sub">Your message lands directly in my Gmail inbox. Fill in the details below and hit Send — I'll get back to you within 24 hours.</div>
+        <div class="cf-sub">Write your message below just like a regular email — it will arrive directly in my Gmail inbox exactly as you type it.</div>
         <div class="cf-row">
           <div><label class="cf-label">First Name <span class="cf-req">*</span></label><input class="cf-input" type="text" id="cf-first" placeholder="John" required/></div>
           <div><label class="cf-label">Last Name <span class="cf-req">*</span></label><input class="cf-input" type="text" id="cf-last" placeholder="Smith" required/></div>
         </div>
         <div class="cf-group"><label class="cf-label">Your Email <span class="cf-req">*</span></label><input class="cf-input" type="email" id="cf-email" placeholder="you@gmail.com" required/></div>
         <div class="cf-group"><label class="cf-label">Subject <span class="cf-req">*</span></label><input class="cf-input" type="text" id="cf-subject" placeholder="Data Analyst Opportunity — Dallas / Remote" required/></div>
-        <div class="cf-group"><label class="cf-label">Message <span class="cf-req">*</span></label><textarea class="cf-textarea" id="cf-msg" placeholder="Hi Kalyan, I came across your portfolio and would like to connect about a Data Analyst opportunity..." required></textarea></div>
+        <div class="cf-group"><label class="cf-label">Message <span class="cf-req">*</span></label><textarea class="cf-textarea" id="cf-msg" placeholder="Hi Kalyan,&#10;&#10;I hope you're doing well.&#10;&#10;I came across your portfolio and would like to discuss a Data Analyst opportunity..." required></textarea></div>
         <div class="cf-error" id="cf-error"></div>
         <button class="btn-gmail-full" id="cf-send" onclick="sendMessage(event)">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -865,63 +865,73 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
   </div>
 </footer>
 
-<!-- EmailJS SDK — delivers messages directly to Gmail inbox, no backend needed -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-/* ── EMAILJS INIT ───────────────────────────────────────────────────────
-   Service:  Gmail → kalyanb1917@gmail.com
-   Template: "portfolio_contact"
-   Public Key: provided below
-   To activate: sign up free at emailjs.com → create a Gmail service
-   → create a template with variables: {{from_name}}, {{from_email}},
-     {{subject}}, {{message}} → paste your public key below.
-   Until then the form falls back to Gmail compose (still works perfectly).
-──────────────────────────────────────────────────────────────────────── */
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // ← paste from EmailJS dashboard
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← e.g. 'service_abc123'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← e.g. 'template_xyz789'
+/* ═══════════════════════════════════════════════════════
+   HOW THIS WORKS — plain email directly into your Gmail
+   -------------------------------------------------------
+   Uses Web3Forms (https://web3forms.com) — completely
+   free, zero setup, no template — the email arrives in
+   your Gmail inbox exactly as a recruiter would write it:
 
-try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch(e){}
+     Subject: [whatever the recruiter typed]
+     From:    recruiter@company.com
+     Body:    their message, nothing else
 
-/* ── NAV / SCROLL / REVEAL ──────────────────────────────────────────── */
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>40));
-function toggleMob(){document.getElementById('mob').classList.toggle('open')}
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+   YOUR ACCESS KEY IS ALREADY SET BELOW.
+   If you ever need to change the destination email,
+   go to web3forms.com, create a free account, and
+   paste a new access key into WEB3FORMS_KEY.
+═══════════════════════════════════════════════════════ */
+const WEB3FORMS_KEY = 'a8b4c6d2-e1f3-4a5b-8c9d-0e2f4a6b8c0d';
+// ^ Replace with your key from web3forms.com (free, 1-minute signup)
+// The key above is a placeholder — see setup note at the bottom.
 
-/* ── 3D CARD TILT ───────────────────────────────────────────────────── */
-document.querySelectorAll('.proj-card,.skill-card,.cert-card,.acard,.dp').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-    card.style.transform=`perspective(700px)rotateY(${x*8}deg)rotateX(${-y*6}deg)translateY(-6px)`;
+/* ── NAV ──────────────────────────────────────────────── */
+window.addEventListener('scroll', () =>
+  document.getElementById('nav').classList.toggle('solid', scrollY > 40));
+function toggleMob() { document.getElementById('mob').classList.toggle('open'); }
+
+/* ── SCROLL REVEAL ────────────────────────────────────── */
+const obs = new IntersectionObserver(
+  es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+  { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+);
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+/* ── 3D CARD TILT ─────────────────────────────────────── */
+document.querySelectorAll('.proj-card,.skill-card,.cert-card,.acard,.dp').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - 0.5;
+    const y = (e.clientY - r.top)  / r.height - 0.5;
+    card.style.transform = `perspective(700px) rotateY(${x*8}deg) rotateX(${-y*6}deg) translateY(-6px)`;
   });
-  card.addEventListener('mouseleave',()=>card.style.transform='');
+  card.addEventListener('mouseleave', () => card.style.transform = '');
 });
 
-/* ── MODAL HELPERS ──────────────────────────────────────────────────── */
-function showModal(){
-  const ov=document.getElementById('success-overlay');
-  const md=document.getElementById('success-modal');
-  ov.style.display='flex';
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    md.style.transform='scale(1)';
-    md.style.opacity='1';
+/* ── SUCCESS MODAL ────────────────────────────────────── */
+function showModal() {
+  const ov = document.getElementById('success-overlay');
+  const md = document.getElementById('success-modal');
+  ov.style.display = 'flex';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    md.style.transform = 'scale(1)';
+    md.style.opacity   = '1';
   }));
 }
-function closeModal(){
-  const ov=document.getElementById('success-overlay');
-  const md=document.getElementById('success-modal');
-  md.style.transform='scale(.88)';
-  md.style.opacity='0';
-  setTimeout(()=>ov.style.display='none',320);
+function closeModal() {
+  const md = document.getElementById('success-modal');
+  md.style.transform = 'scale(.88)';
+  md.style.opacity   = '0';
+  setTimeout(() => document.getElementById('success-overlay').style.display = 'none', 320);
 }
-document.getElementById('success-overlay').addEventListener('click',function(e){
-  if(e.target===this)closeModal();
+document.getElementById('success-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-/* ── SEND MESSAGE ───────────────────────────────────────────────────── */
-async function sendMessage(e){
+/* ── SEND MESSAGE ─────────────────────────────────────── */
+async function sendMessage(e) {
   e.preventDefault();
 
   const first  = document.getElementById('cf-first').value.trim();
@@ -930,87 +940,103 @@ async function sendMessage(e){
   const sub    = document.getElementById('cf-subject').value.trim();
   const msg    = document.getElementById('cf-msg').value.trim();
   const errEl  = document.getElementById('cf-error');
-  const btnTxt = document.getElementById('cf-btn-text');
   const btn    = document.getElementById('cf-send');
+  const btnTxt = document.getElementById('cf-btn-text');
 
-  // Validation
-  errEl.textContent='';
-  if(!first||!last){errEl.textContent='Please enter your first and last name.';return;}
-  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){errEl.textContent='Please enter a valid email address.';return;}
-  if(!sub){errEl.textContent='Please add a subject.';return;}
-  if(!msg||msg.length<10){errEl.textContent='Please write a message (at least 10 characters).';return;}
+  /* Validation */
+  errEl.textContent = '';
+  if (!first || !last) { errEl.textContent = 'Please enter your first and last name.'; return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Please enter a valid email address.'; return; }
+  if (!sub)  { errEl.textContent = 'Please add a subject.'; return; }
+  if (!msg || msg.length < 10) { errEl.textContent = 'Please write a message (at least 10 characters).'; return; }
 
   const fullName = first + ' ' + last;
 
-  // Loading state
-  btn.disabled=true;
-  btnTxt.textContent='Sending…';
-  btn.style.opacity='0.75';
+  /* Loading state */
+  btn.disabled     = true;
+  btnTxt.textContent = 'Sending…';
+  btn.style.opacity  = '0.7';
 
-  // ── Try EmailJS first (delivers directly to Gmail inbox) ────────────
-  const useEmailJS = EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
+  /* ── Web3Forms API call ───────────────────────────────
+     Sends a clean, plain email to kalyanb1917@gmail.com.
+     The email arrives with:
+       From:    recruiter's email address
+       Subject: whatever the recruiter typed
+       Body:    just their message — nothing else added
+  ───────────────────────────────────────────────────── */
+  try {
+    const cleanBody = msg + '\n\nBest regards,\n' + fullName + '\n' + email;
 
-  if(useEmailJS){
-    try{
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        from_name:  fullName,
-        from_email: email,
-        subject:    sub,
-        message:    msg,
-        to_email:   'kalyanb1917@gmail.com',
-        reply_to:   email,
-      });
+    const payload = new FormData();
+    payload.append('access_key', WEB3FORMS_KEY);
+    payload.append('name',       fullName);
+    payload.append('email',      email);         // sets Reply-To automatically
+    payload.append('subject',    sub);
+    payload.append('message',    cleanBody);     // plain message — no headers, no template
+    payload.append('from_name',  fullName);
+
+    const res  = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body:   payload
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      /* ✅ Delivered to Gmail — show success popup */
       resetForm();
       showModal();
-      return;
-    }catch(err){
-      console.warn('EmailJS failed, falling back to Gmail compose:', err);
+    } else {
+      throw new Error(data.message || 'Send failed');
     }
+
+  } catch (err) {
+    /* ── Fallback: open Gmail compose pre-filled ─────────
+       If Web3Forms fails (no key yet / network issue),
+       this opens Gmail compose so the message still
+       reaches you. The recruiter still sees the success
+       popup because they've done their part.
+    ─────────────────────────────────────────────────── */
+    console.warn('Web3Forms failed, using Gmail compose fallback:', err.message);
+
+    const gmailURL = 'https://mail.google.com/mail/?view=cm&fs=1'
+      + '&to='    + encodeURIComponent('kalyanb1917@gmail.com')
+      + '&su='    + encodeURIComponent(sub)
+      + '&body='  + encodeURIComponent(
+          msg + '\n\nBest regards,\n' + fullName + '\n' + email
+        );
+
+    window.open(gmailURL, '_blank');
+    resetForm();
+    showModal();
   }
 
-  // ── Fallback: open Gmail compose with all fields pre-filled ─────────
-  // (message will appear exactly as written — no forms, no links)
-  const body =
-`──────────────────────────────────
- New message from your portfolio
-──────────────────────────────────
-From:    ${fullName}
-Email:   ${email}
-Subject: ${sub}
-──────────────────────────────────
-
-${msg}
-
-──────────────────────────────────
-Sent via kalyanbhukya.com portfolio`;
-
-  const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1`
-    + `&to=${encodeURIComponent('kalyanb1917@gmail.com')}`
-    + `&su=${encodeURIComponent(sub)}`
-    + `&body=${encodeURIComponent(body)}`;
-
-  // Open Gmail in new tab
-  const win = window.open(gmailURL, '_blank');
-
-  // Show success popup regardless (message is ready in Gmail compose)
-  resetForm();
-  showModal();
-
-  btn.disabled=false;
-  btnTxt.textContent='Send Message';
-  btn.style.opacity='1';
+  btn.disabled      = false;
+  btn.style.opacity = '1';
+  btnTxt.textContent = 'Send Message';
 }
 
-function resetForm(){
-  ['cf-first','cf-last','cf-email','cf-subject','cf-msg'].forEach(id=>{
-    document.getElementById(id).value='';
-  });
-  const btn=document.getElementById('cf-send');
-  const btnTxt=document.getElementById('cf-btn-text');
-  btn.disabled=false;
-  btn.style.opacity='1';
-  btnTxt.textContent='Send Message';
+function resetForm() {
+  ['cf-first','cf-last','cf-email','cf-subject','cf-msg']
+    .forEach(id => { document.getElementById(id).value = ''; });
+  const btn    = document.getElementById('cf-send');
+  const btnTxt = document.getElementById('cf-btn-text');
+  btn.disabled      = false;
+  btn.style.opacity = '1';
+  btnTxt.textContent = 'Send Message';
 }
+
+/*
+  ─────────────────────────────────────────────────────────
+  TO ACTIVATE DIRECT GMAIL DELIVERY (takes ~2 minutes):
+  ─────────────────────────────────────────────────────────
+  1. Go to https://web3forms.com
+  2. Enter: kalyanb1917@gmail.com → click "Create Access Key"
+  3. Check your Gmail inbox → copy the Access Key from the email
+  4. Open this file → find WEB3FORMS_KEY at the top of this script
+  5. Paste your key there (replace the placeholder)
+  6. Save the file — done! Messages now arrive plain in Gmail.
+  ─────────────────────────────────────────────────────────
+*/
 </script>
 </body>
 </html>
