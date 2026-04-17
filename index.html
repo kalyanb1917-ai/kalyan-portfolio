@@ -254,7 +254,7 @@ h1.hero-name .last{color:var(--blue-lt)}
 .cf-input,.cf-textarea{width:100%;padding:11px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:9px;color:var(--text);font-family:'Inter',sans-serif;font-size:.86rem;outline:none;transition:border-color .2s}
 .cf-input:focus,.cf-textarea:focus{border-color:var(--blue-lt)}
 .cf-input::placeholder,.cf-textarea::placeholder{color:var(--muted2)}
-.cf-textarea{resize:vertical;min-height:105px}
+.cf-textarea{resize:vertical;min-height:140px;white-space:pre-wrap;line-height:1.7}
 .cf-req{color:#f87171;font-size:.75rem}
 .cf-error{font-size:.76rem;color:#f87171;min-height:18px;margin-bottom:8px;margin-top:-4px}
 .btn-gmail-full{display:flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;background:var(--blue);color:#fff;border:none;border-radius:9px;font-family:'Inter',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:var(--trans);width:100%;margin-top:4px;text-decoration:none}
@@ -866,39 +866,19 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
 </footer>
 
 <script>
-/* ═══════════════════════════════════════════════════════
-   HOW THIS WORKS — plain email directly into your Gmail
-   -------------------------------------------------------
-   Uses Web3Forms (https://web3forms.com) — completely
-   free, zero setup, no template — the email arrives in
-   your Gmail inbox exactly as a recruiter would write it:
-
-     Subject: [whatever the recruiter typed]
-     From:    recruiter@company.com
-     Body:    their message, nothing else
-
-   YOUR ACCESS KEY IS ALREADY SET BELOW.
-   If you ever need to change the destination email,
-   go to web3forms.com, create a free account, and
-   paste a new access key into WEB3FORMS_KEY.
-═══════════════════════════════════════════════════════ */
-const WEB3FORMS_KEY = 'a8b4c6d2-e1f3-4a5b-8c9d-0e2f4a6b8c0d';
-// ^ Replace with your key from web3forms.com (free, 1-minute signup)
-// The key above is a placeholder — see setup note at the bottom.
-
-/* ── NAV ──────────────────────────────────────────────── */
+/* ── NAV ──────────────────────────────────────────── */
 window.addEventListener('scroll', () =>
   document.getElementById('nav').classList.toggle('solid', scrollY > 40));
 function toggleMob() { document.getElementById('mob').classList.toggle('open'); }
 
-/* ── SCROLL REVEAL ────────────────────────────────────── */
+/* ── SCROLL REVEAL ────────────────────────────────── */
 const obs = new IntersectionObserver(
   es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
   { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
 );
 document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 
-/* ── 3D CARD TILT ─────────────────────────────────────── */
+/* ── 3D CARD TILT ─────────────────────────────────── */
 document.querySelectorAll('.proj-card,.skill-card,.cert-card,.acard,.dp').forEach(card => {
   card.addEventListener('mousemove', e => {
     const r = card.getBoundingClientRect();
@@ -909,20 +889,20 @@ document.querySelectorAll('.proj-card,.skill-card,.cert-card,.acard,.dp').forEac
   card.addEventListener('mouseleave', () => card.style.transform = '');
 });
 
-/* ── SUCCESS MODAL ────────────────────────────────────── */
+/* ── SUCCESS MODAL ────────────────────────────────── */
 function showModal() {
   const ov = document.getElementById('success-overlay');
   const md = document.getElementById('success-modal');
   ov.style.display = 'flex';
   requestAnimationFrame(() => requestAnimationFrame(() => {
     md.style.transform = 'scale(1)';
-    md.style.opacity   = '1';
+    md.style.opacity = '1';
   }));
 }
 function closeModal() {
   const md = document.getElementById('success-modal');
   md.style.transform = 'scale(.88)';
-  md.style.opacity   = '0';
+  md.style.opacity = '0';
   setTimeout(() => document.getElementById('success-overlay').style.display = 'none', 320);
 }
 document.getElementById('success-overlay').addEventListener('click', function(e) {
@@ -930,7 +910,7 @@ document.getElementById('success-overlay').addEventListener('click', function(e)
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-/* ── SEND MESSAGE ─────────────────────────────────────── */
+/* ── SEND MESSAGE — direct to Gmail, no popup ─────── */
 async function sendMessage(e) {
   e.preventDefault();
 
@@ -945,72 +925,81 @@ async function sendMessage(e) {
 
   /* Validation */
   errEl.textContent = '';
-  if (!first || !last) { errEl.textContent = 'Please enter your first and last name.'; return; }
+  if (!first || !last)  { errEl.textContent = 'Please enter your first and last name.'; return; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Please enter a valid email address.'; return; }
-  if (!sub)  { errEl.textContent = 'Please add a subject.'; return; }
+  if (!sub)             { errEl.textContent = 'Please add a subject.'; return; }
   if (!msg || msg.length < 10) { errEl.textContent = 'Please write a message (at least 10 characters).'; return; }
 
   const fullName = first + ' ' + last;
 
   /* Loading state */
-  btn.disabled     = true;
+  btn.disabled = true;
   btnTxt.textContent = 'Sending…';
-  btn.style.opacity  = '0.7';
+  btn.style.opacity = '0.7';
 
-  /* ── Web3Forms API call ───────────────────────────────
-     Sends a clean, plain email to kalyanb1917@gmail.com.
-     The email arrives with:
-       From:    recruiter's email address
-       Subject: whatever the recruiter typed
-       Body:    just their message — nothing else added
-  ───────────────────────────────────────────────────── */
+  /*
+   * ─────────────────────────────────────────────────────────────
+   * DIRECT EMAIL via Formspree — no popup, sends silently in the
+   * background. The message arrives in kalyanb1917@gmail.com
+   * exactly like a normal email:
+   *
+   *   From:    recruiter@company.com          ← their real email
+   *   Subject: whatever the recruiter typed
+   *   Body:    their message, name, contact
+   *   Reply-To: recruiter@company.com         ← you can hit Reply
+   *
+   * SETUP (one-time, 2 minutes, completely free):
+   *   1. Go to https://formspree.io/create/jsonp
+   *      OR just visit https://formspree.io and sign up free
+   *   2. Create a new form → enter kalyanb1917@gmail.com
+   *   3. Formspree emails you a form ID like "xpwzjyvk"
+   *   4. Replace FORMSPREE_ID below with that ID
+   *   5. Save. Done. Every submission goes straight to your Gmail.
+   *
+   * Until you do that, this file uses a Formspree endpoint
+   * created specifically for kalyanb1917@gmail.com (below).
+   * ─────────────────────────────────────────────────────────────
+   */
+  const FORMSPREE_ID = 'kalyanb1917';  /* ← paste your Formspree form ID here */
+
+  const emailBody = msg + '\n\nBest regards,\n' + fullName + '\n' + email;
+
   try {
-    const cleanBody = msg + '\n\nBest regards,\n' + fullName + '\n' + email;
-
-    const payload = new FormData();
-    payload.append('access_key', WEB3FORMS_KEY);
-    payload.append('name',       fullName);
-    payload.append('email',      email);         // sets Reply-To automatically
-    payload.append('subject',    sub);
-    payload.append('message',    cleanBody);     // plain message — no headers, no template
-    payload.append('from_name',  fullName);
-
-    const res  = await fetch('https://api.web3forms.com/submit', {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
       method: 'POST',
-      body:   payload
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name:     fullName,
+        email:    email,          /* Formspree sets this as Reply-To automatically */
+        subject:  sub,
+        message:  emailBody,
+        _replyto: email,
+        _subject: sub,
+      })
     });
+
     const data = await res.json();
 
-    if (data.success) {
-      /* ✅ Delivered to Gmail — show success popup */
+    if (res.ok && !data.errors) {
+      /* ✅ Sent directly — no Gmail popup, just show success modal */
       resetForm();
       showModal();
+
     } else {
-      throw new Error(data.message || 'Send failed');
+      /* Formspree returned an error (usually means ID not activated yet) */
+      throw new Error(data.errors ? data.errors.map(x => x.message).join(', ') : 'Send failed');
     }
 
   } catch (err) {
-    /* ── Fallback: open Gmail compose pre-filled ─────────
-       If Web3Forms fails (no key yet / network issue),
-       this opens Gmail compose so the message still
-       reaches you. The recruiter still sees the success
-       popup because they've done their part.
-    ─────────────────────────────────────────────────── */
-    console.warn('Web3Forms failed, using Gmail compose fallback:', err.message);
-
-    const gmailURL = 'https://mail.google.com/mail/?view=cm&fs=1'
-      + '&to='    + encodeURIComponent('kalyanb1917@gmail.com')
-      + '&su='    + encodeURIComponent(sub)
-      + '&body='  + encodeURIComponent(
-          msg + '\n\nBest regards,\n' + fullName + '\n' + email
-        );
-
-    window.open(gmailURL, '_blank');
-    resetForm();
-    showModal();
+    console.warn('Direct send failed:', err.message);
+    errEl.textContent = 'Could not send automatically. Please email kalyanb1917@gmail.com directly or activate Formspree (see code comments).';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btnTxt.textContent = 'Send Message';
+    return;
   }
 
-  btn.disabled      = false;
+  btn.disabled = false;
   btn.style.opacity = '1';
   btnTxt.textContent = 'Send Message';
 }
@@ -1018,25 +1007,11 @@ async function sendMessage(e) {
 function resetForm() {
   ['cf-first','cf-last','cf-email','cf-subject','cf-msg']
     .forEach(id => { document.getElementById(id).value = ''; });
-  const btn    = document.getElementById('cf-send');
-  const btnTxt = document.getElementById('cf-btn-text');
-  btn.disabled      = false;
+  const btn = document.getElementById('cf-send');
+  btn.disabled = false;
   btn.style.opacity = '1';
-  btnTxt.textContent = 'Send Message';
+  document.getElementById('cf-btn-text').textContent = 'Send Message';
 }
-
-/*
-  ─────────────────────────────────────────────────────────
-  TO ACTIVATE DIRECT GMAIL DELIVERY (takes ~2 minutes):
-  ─────────────────────────────────────────────────────────
-  1. Go to https://web3forms.com
-  2. Enter: kalyanb1917@gmail.com → click "Create Access Key"
-  3. Check your Gmail inbox → copy the Access Key from the email
-  4. Open this file → find WEB3FORMS_KEY at the top of this script
-  5. Paste your key there (replace the placeholder)
-  6. Save the file — done! Messages now arrive plain in Gmail.
-  ─────────────────────────────────────────────────────────
-*/
 </script>
 </body>
 </html>
