@@ -854,45 +854,26 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 0}
 
       <div class="contact-form fade fd2">
   <div class="cf-title">Send a Message</div>
-  <div class="cf-sub">
-    Fill in your details and click "Send Message" — your message will be sent directly to my inbox.
-  </div>
+  <div class="cf-sub">Fill details and click Send Message.</div>
 
-  <form action="https://formsubmit.co/kalyanb1917@gmail.com" method="POST">
-    <div class="cf-row">
-      <div>
-        <label class="cf-label">First Name</label>
-        <input class="cf-input" type="text" name="first_name" placeholder="John" required>
-      </div>
-      <div>
-        <label class="cf-label">Last Name</label>
-        <input class="cf-input" type="text" name="last_name" placeholder="Smith" required>
-      </div>
-    </div>
+  <form id="contact-form">
 
-    <div class="cf-group">
-      <label class="cf-label">Your Gmail</label>
-      <input class="cf-input" type="email" name="email" placeholder="you@gmail.com" required>
-    </div>
+    <input class="cf-input" type="text" id="cf-first" placeholder="First Name" required>
 
-    <div class="cf-group">
-      <label class="cf-label">Subject</label>
-      <input class="cf-input" type="text" name="subject" placeholder="Data Analyst Opportunity" required>
-    </div>
+    <input class="cf-input" type="text" id="cf-last" placeholder="Last Name" required>
 
-    <div class="cf-group">
-      <label class="cf-label">Message</label>
-      <textarea class="cf-textarea" name="message" placeholder="Hi Kalyan, I came across your portfolio and would like to connect." required></textarea>
-    </div>
+    <input class="cf-input" type="email" id="cf-email" placeholder="Your Gmail" required>
 
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_subject" value="New Portfolio Message">
-    <input type="hidden" name="_next" value="https://kalyanb1917-ai.github.io/kalyan-portfolio/">
+    <input class="cf-input" type="text" id="cf-subject" placeholder="Subject" required>
 
-    <button type="submit" class="btn-gmail-full">
+    <textarea class="cf-textarea" id="cf-msg" placeholder="Message" required></textarea>
+
+    <button type="submit" class="btn-gmail-full" id="cf-send-btn">
       Send Message
     </button>
+
+    <div id="cf-status"></div>
+
   </form>
 </div>
 </section>
@@ -939,13 +920,46 @@ function sendGmail(e){
   const name=(first+' '+last).trim()||'Someone';
   const body=`Hi Kalyan,
 
-${msg}
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init({
+  publicKey: "7WldpWTPKnpoxGDAo"
+});
 
-Best regards,
-${name}${email?' ('+email+')':''}`;
-  const url=`https://mail.google.com/mail/?view=cm&fs=1&to=kalyanb1917@gmail.com&su=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
-  window.open(url,'_blank');
-}
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const status = document.getElementById("cf-status");
+    const btn = document.getElementById("cf-send-btn");
+
+    const firstName = document.getElementById("cf-first").value.trim();
+    const lastName = document.getElementById("cf-last").value.trim();
+
+    const templateParams = {
+      from_name: ${firstName} ${lastName}.trim(),
+      reply_to: document.getElementById("cf-email").value.trim(),
+      subject: document.getElementById("cf-subject").value.trim(),
+      message: document.getElementById("cf-msg").value.trim()
+    };
+
+    btn.disabled = true;
+    btn.textContent = "Sending...";
+    status.innerHTML = "";
+
+    emailjs.send("service_an7g85d", "template_37vdpb3", templateParams)
+      .then(function() {
+        status.innerHTML = "Message sent successfully";
+        document.getElementById("contact-form").reset();
+      })
+      .catch(function(error) {
+        console.error("EmailJS Error:", error);
+        status.innerHTML = "Failed to send message. Please try again.";
+      })
+      .finally(function() {
+        btn.disabled = false;
+        btn.textContent = "Send Message";
+      });
+  });
 </script>
 </body>
 </html>
