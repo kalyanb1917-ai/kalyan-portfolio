@@ -108,10 +108,10 @@ h1.hero-name .last{color:var(--blue-lt)}
 
 /* PHOTO — right column, same height as name */
 .hero-photo-col{
- display:flex;
- align-items:flex-start;
- justify-content:center;
- padding-top:40px;
+  display:flex;
+  align-items:center;      /* center vertically */
+  justify-content:center; /* center horizontally */
+  padding-top:0;
 }
 
 .photo-frame{
@@ -142,8 +142,9 @@ h1.hero-name .last{color:var(--blue-lt)}
   object-fit:cover;
   object-position:top center;
   border:3px solid rgba(255,255,255,.08);
-  box-shadow:0 16px 60px rgba(0,0,0,.6),
-             0 0 0 1px rgba(37,99,235,.15);
+  box-shadow:
+    0 16px 60px rgba(0,0,0,.6),
+    0 0 0 1px rgba(37,99,235,.15);
   position:relative;
   z-index:2;
 }
